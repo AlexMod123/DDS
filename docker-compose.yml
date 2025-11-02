@@ -18,39 +18,39 @@ services:
       timeout: 5s
       retries: 5
 
-#   backend:
-#     build:
-#       context: ./backend
-#       dockerfile: Dockerfile
-#     container_name: dds-backend
-#     command: >
-#       sh -c "python manage.py wait_for_db &&
-#              python manage.py migrate &&
-#              python manage.py loaddata initial_data &&
-#              python manage.py runserver 0.0.0.0:8000"
-#     volumes:
-#       - ./backend:/app
-#     ports:
-#       - "8000:8000"
-#     environment:
-#       - DATABASE_URL=postgres://dds_user:dds_pass@db:5432/dds_db
-#       - DEBUG=1
-#     depends_on:
-#       db:
-#         condition: service_healthy
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: dds-backend
+    command: >
+      sh -c "python manage.py wait_for_db &&
+             python manage.py migrate &&
+             python manage.py loaddata initial_data &&
+             python manage.py runserver 0.0.0.0:8000"
+    volumes:
+      - ./backend:/app
+    ports:
+      - "8000:8000"
+    environment:
+      - DATABASE_URL=postgres://dds_user:dds_pass@db:5432/dds_db
+      - DEBUG=1
+    depends_on:
+      db:
+        condition: service_healthy
 
-#   frontend:
-#     build:
-#       context: ./frontend
-#       dockerfile: Dockerfile
-#     container_name: dds-frontend
-#     ports:
-#       - "3000:3000"
-#     volumes:
-#       - ./frontend:/app
-#       - /app/node_modules
-#     environment:
-#       - CHOKIDAR_USEPOLLING=true
-#     depends_on:
-#       - backend
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: dds-frontend
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+    depends_on:
+      - backend
 
