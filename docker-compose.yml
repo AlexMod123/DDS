@@ -1,0 +1,56 @@
+version: "3.9"
+
+services:
+  db:
+    image: postgres:16-alpine
+    container_name: dds-postgres
+    environment:
+      POSTGRES_DB: dds_db
+      POSTGRES_USER: dds_user
+      POSTGRES_PASSWORD: dds_pass
+    volumes:
+      - ./postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U dds_user -d dds_db"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+#   backend:
+#     build:
+#       context: ./backend
+#       dockerfile: Dockerfile
+#     container_name: dds-backend
+#     command: >
+#       sh -c "python manage.py wait_for_db &&
+#              python manage.py migrate &&
+#              python manage.py loaddata initial_data &&
+#              python manage.py runserver 0.0.0.0:8000"
+#     volumes:
+#       - ./backend:/app
+#     ports:
+#       - "8000:8000"
+#     environment:
+#       - DATABASE_URL=postgres://dds_user:dds_pass@db:5432/dds_db
+#       - DEBUG=1
+#     depends_on:
+#       db:
+#         condition: service_healthy
+
+#   frontend:
+#     build:
+#       context: ./frontend
+#       dockerfile: Dockerfile
+#     container_name: dds-frontend
+#     ports:
+#       - "3000:3000"
+#     volumes:
+#       - ./frontend:/app
+#       - /app/node_modules
+#     environment:
+#       - CHOKIDAR_USEPOLLING=true
+#     depends_on:
+#       - backend
+

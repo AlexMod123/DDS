@@ -1,0 +1,31 @@
+{
+  "name": "DDS",
+  "dockerComposeFile": ["../docker-compose.yml"], // ← МАССИВ!
+  "service": "backend",
+  "workspaceFolder": "/app",
+
+  "features": {
+    "ghcr.io/devcontainers/features/node:1": { "version": "20" },
+    "ghcr.io/devcontainers/features/python:1": { "version": "3.12" }
+  },
+
+  "postCreateCommand": "cd /app/frontend && npm install && cd /app/backend && pip install -r requirements.txt || true",
+
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-python.python",
+        "ms-python.vscode-pylance",
+        "esbenp.prettier-vscode",
+        "bradlc.vscode-tailwindcss",
+        "dbaeumer.vscode-eslint"
+      ],
+      "settings": {
+        "python.defaultInterpreterPath": "/usr/local/bin/python",
+        "editor.formatOnSave": true
+      }
+    }
+  },
+
+  "forwardPorts": [8000, 5173, 5432]
+}

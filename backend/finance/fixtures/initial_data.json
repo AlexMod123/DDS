@@ -1,0 +1,179 @@
+[
+    {
+        "model": "finance.status",
+        "pk": 1,
+        "fields": {
+            "name": "Бизнес",
+            "slug": "business",
+            "is_active": true
+        }
+    },
+    {
+        "model": "finance.status",
+        "pk": 2,
+        "fields": {
+            "name": "Личное",
+            "slug": "personal",
+            "is_active": true
+        }
+    },
+    {
+        "model": "finance.status",
+        "pk": 3,
+        "fields": {
+            "name": "Налог",
+            "slug": "tax",
+            "is_active": true
+        }
+    },
+    {
+        "model": "finance.transactiontype",
+        "pk": 1,
+        "fields": {
+            "name": "Пополнение",
+            "slug": "income",
+            "is_income": true,
+            "is_active": true
+        }
+    },
+    {
+        "model": "finance.transactiontype",
+        "pk": 2,
+        "fields": {
+            "name": "Списание",
+            "slug": "expense",
+            "is_income": false,
+            "is_active": true
+        }
+    },
+    {
+        "model": "finance.category",
+        "pk": 1,
+        "fields": {
+            "name": "Инфраструктура",
+            "parent": null,
+            "status": 1,
+            "is_active": true
+        }
+    },
+    {
+        "model": "finance.category",
+        "pk": 2,
+        "fields": {
+            "name": "VPS",
+            "parent": 1,
+            "status": 1,
+            "is_active": true
+        }
+    },
+    {
+        "model": "finance.category",
+        "pk": 3,
+        "fields": {
+            "name": "Proxy",
+            "parent": 1,
+            "status": 1,
+            "is_active": true
+        }
+    },
+    {
+        "model": "finance.category",
+        "pk": 4,
+        "fields": {
+            "name": "Маркетинг",
+            "parent": null,
+            "status": 1,
+            "is_active": true
+        }
+    },
+    {
+        "model": "finance.category",
+        "pk": 5,
+        "fields": {
+            "name": "Farpost",
+            "parent": 4,
+            "status": 1,
+            "is_active": true
+        }
+    },
+    {
+        "model": "finance.category",
+        "pk": 6,
+        "fields": {
+            "name": "Avito",
+            "parent": 4,
+            "status": 1,
+            "is_active": true
+        }
+    },
+    {
+        "model": "finance.category",
+        "pk": 7,
+        "fields": {
+            "name": "Зарплата",
+            "parent": null,
+            "status": 2,
+            "is_active": true
+        }
+    },
+    {
+        "model": "finance.transaction",
+        "pk": 1,
+        "fields": {
+            "created_at": "2025-01-01",
+            "status": 1,
+            "transaction_type": 2,
+            "category": 2,
+            "amount": "1500.00",
+            "comment": "Оплата VPS на 3 месяца"
+        }
+    },
+    {
+        "model": "finance.transaction",
+        "pk": 2,
+        "fields": {
+            "created_at": "2025-01-05",
+            "status": 1,
+            "transaction_type": 2,
+            "category": 5,
+            "amount": "300.00",
+            "comment": "Реклама на Farpost"
+        }
+    },
+    {
+        "model": "finance.transaction",
+        "pk": 3,
+        "fields": {
+            "created_at": "2025-01-10",
+            "status": 2,
+            "transaction_type": 1,
+            "category": 7,
+            "amount": "50000.00",
+            "comment": "Получение зарплаты"
+        }
+    },
+    {
+        "model": "finance.transaction",
+        "pk": 4,
+        "fields": {
+            "created_at": "2025-01-15",
+            "status": 1,
+            "transaction_type": 2,
+            "category": 6,
+            "amount": "1200.00",
+            "comment": "Реклама на Avito"
+        }
+    },
+    {
+        "model": "finance.transaction",
+        "pk": 5,
+        "fields": {
+            "created_at": "2025-01-20",
+            "status": 3,
+            "transaction_type": 2,
+            "category": 1,
+            "amount": "8000.00",
+            "comment": "Оплата налога УСН"
+        }
+    }
+]
